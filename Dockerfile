@@ -8,8 +8,9 @@ ENV AWS_DEFAULT_REGION=eu-west-1
 RUN apk add --update --no-cache git curl ca-certificates bash aws-cli
 
 # Install crane
-RUN mkdir crane && \
-    curl -L https://github.com/google/go-containerregistry/releases/download/v${CRANE_VERSION}/go-containerregistry_Linux_x86_64.tar.gz | tar xvz -C crane && \
+RUN ARCH=$(uname -m | sed 's/aarch64/arm64/') && \
+    mkdir crane && \
+    curl -L https://github.com/google/go-containerregistry/releases/download/v${CRANE_VERSION}/go-containerregistry_Linux_${ARCH}.tar.gz | tar xvz -C crane && \
     mv crane/crane /usr/bin/crane && \
     rm -rf crane
 
