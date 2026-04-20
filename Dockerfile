@@ -15,6 +15,6 @@ RUN ARCH=$(uname -m | sed 's/aarch64/arm64/') && \
     rm -rf crane
 
 # Install helm S3 plugin
-RUN helm plugin install https://github.com/hypnoglow/helm-s3.git
+RUN helm plugin install https://github.com/hypnoglow/helm-s3.git --verify=false
 
 WORKDIR /apps
